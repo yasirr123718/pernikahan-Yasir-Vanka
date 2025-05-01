@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan Yasir & Vanka</title>
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url('Going-Merry.jpg');
+      background-size: cover;
+      background-position: center;
+      animation: 
+        bgZoom 25s infinite alternate ease-in-out,
+        bgPan 30s infinite linear;
+      transform: scale(1.1);
+    }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2); }
+    }
+
+    @keyframes bgPan {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Overlay */
+    .overlay {
+      background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+      padding: 40px 20px;
+      min-height: 100vh;
+      position: relative;
+      backdrop-filter: blur(3px);
+    }
+
+    /* Title Animations */
+    h1 {
+      font-size: 4em;
+      margin: 0;
+      text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+      animation: 
+        titleEntrance 1s ease-out forwards,
+        titleGlow 2s ease-in-out infinite 1s;
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-top: 20px;
+      animation: 
+        subtitleEntrance 1s ease-out 0.5s forwards,
+        textFloat 4s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes titleEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(-50px) rotate(-3deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+      }
+    }
+
+    @keyframes titleGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+      50% { text-shadow: 0 0 30px rgba(255,255,255,0.7), 0 0 50px rgba(255,255,255,0.4); }
+    }
+
+    @keyframes subtitleEntrance {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Countdown Animations */
+    .countdown {
+      font-size: 2.2em;
+      margin: 40px 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      perspective: 1000px;
+    }
+
+    .countdown div {
+      background: rgba(255,255,255,0.15);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 
+        0 5px 15px rgba(0,0,0,0.3),
+        inset 0 0 10px rgba(255,255,255,0.2);
+      animation: 
+        countdownEntry 1s ease-out 1s forwards,
+        countdownFloat 3s ease-in-out infinite;
+      transform: translateY(100px) rotateX(90deg);
+      opacity: 0;
+    }
+
+    @keyframes countdownEntry {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
+    }
+
+    @keyframes countdownFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Photo Animations */
+    .characters {
+      display: flex;
+      justify-content: center;
+      margin: 60px 0;
+      gap: 50px;
+    }
+
+    .characters div {
+      animation: photoReveal 1s ease-out forwards;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+
+    .characters div:nth-child(1) { animation-delay: 1.2s; }
+    .characters div:nth-child(2) { animation-delay: 1.5s; }
+
+    @keyframes photoReveal {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .characters img {
+      width: 250px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.5s ease;
+      filter: grayscale(0.2);
+    }
+
+    .characters img:hover {
+      transform: 
+        scale(1.05) 
+        rotate(3deg) 
+        translateY(-10px);
+      filter: grayscale(0);
+      box-shadow: 0 15px 40px rgba(255,255,255,0.3);
+    }
+
+    /* Info Section */
+    .info {
+      margin: 50px 0;
+      animation: infoReveal 1s ease-out 2s forwards;
+      opacity: 0;
+    }
+
+    .info p {
+      font-size: 1.3em;
+      margin: 15px 0;
+      padding: 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      transform: translateX(-50px);
+      opacity: 0;
+      animation: infoLineEntry 0.8s ease-out forwards;
+    }
+
+    .info p:nth-child(1) { animation-delay: 2.2s; }
+    .info p:nth-child(2) { animation-delay: 2.4s; }
+    .info p:nth-child(3) { animation-delay: 2.6s; }
+
+    @keyframes infoLineEntry {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Footer Animation */
+    .footer {
+      margin: 80px 0 30px;
+      animation: footerReveal 1s ease-out 3s forwards;
+      opacity: 0;
+    }
+
+    @keyframes footerReveal {
+      to { opacity: 1; }
+    }
+
+    /* WhatsApp Button Animation */
+    .footer a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: #25D366;
+      color: #fff!important;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  
+  <div class="overlay">
+    <h1>Undangan Pernikahan</h1>
+    <h2>Yasir & Vanka</h2>
+
+    <div class="countdown" id="countdown">
+      <div id="days">00</div> hari
+      <div id="hours">00</div> jam
+      <div id="minutes">00</div> menit
+      <div id="seconds">00</div> detik
+    </div>  
+      <!-- Tambahkan elemen baru di sini -->
+      <div class="event-details">
+        <p>🗓️ Tanggal: 28 Mei 2025</p>
+        <p>⏰ Waktu: 10.00 WIB</p>
+        <p>📍 Lokasi: Aulia Hall Center, Kota Tasikmalaya</p>
+      </div>
+
+    <div class="characters">
+      <div>
+        <img src="foto-nikah.jpg" alt="Yasir">
+        <p>Yasir</p>
+      </div>
+      <div>
+        <img src="foto-nikah.jpg" alt="Vanka">
+        <p>Vanka</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Terima kasih atas doa & restunya. 💖</p>
+      <p>Silakan konfirmasi kehadiran via WhatsApp: <a href="https://wa.me/62895619017287">Klik di sini</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Countdown Timer
+    const countdownTimer = () => {
+      const weddingDate = new Date("2025-05-28T10:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+      if (distance < 0) {
+        clearInterval(timerInterval);
+        document.getElementById('countdown').innerHTML = 
+          '<div style="font-size:1.5em">🎉 Selamat! Acara Sedang Berlangsung 🎉</div>';
+      }
+    }
+
+    const timerInterval = setInterval(countdownTimer, 1000);
+    countdownTimer(); // Initial call
+  </script>
+</body>
+</html>
